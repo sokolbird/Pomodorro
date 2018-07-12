@@ -1,1 +1,1 @@
-This is the pomodoro timer developed on React.JS
+Its a pomodoro timer developed on React.JS
