@@ -16,13 +16,16 @@ class Main extends Component {
         return (
             <div className="main">
                 <Task/>
-                <Controls onStartClick={this.handleStart.bind(this)} isStarted={this.state.isStarted}/>
+                <Controls onStartClick={this.handleStart.bind(this)}
+                          isStarted={this.state.isStarted}
+                          onReset={this.handleReset.bind(this)}
+                          onStopClick={this.handleStop.bind(this)}/>
                 <Timer isStarted={this.state.isStarted} tomatoClasses={this.state.tomatoClasses}/>
             </div>
         )
     }
 
-    handleStart = (isStarted, tomatoClasses) => {
+    handleStart = () => {
         this.setState({
             isStarted: !this.state.isStarted,
             tomatoClasses: 'tomato tomato-spin'
@@ -32,6 +35,18 @@ class Main extends Component {
                 tomatoClasses: 'tomato'
             });
         }, 700);
+    };
+
+    handleReset = () => {
+        this.setState({
+            isStarted: false
+        })
+    };
+
+    handleStop = () => {
+        this.setState({
+            isStarted: false
+        })
     }
 }
 
