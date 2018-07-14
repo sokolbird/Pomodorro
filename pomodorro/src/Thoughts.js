@@ -18,7 +18,7 @@ class Thoughts extends Component {
         return (
             <div className="thoughts">
                 <h5 className="card-header">Notes</h5>
-                <div className="adding-note" onClick={this.handleAdding} onMouseDown={this.preventBlur}>
+                <div className="adding-note" onClick={this.handleAdding}>
                     {this.state.onAdding ? 'Cancel' : 'Add a note...'}
                     <img src={!this.state.onAdding ? plus : minus} alt='icon' style={{float: 'right'}}/>
                 </div>
@@ -41,10 +41,6 @@ class Thoughts extends Component {
                 onAdding: !this.state.onAdding,
                 notes: this.state.addingNote ? [...prevState.notes, this.state.addingNote] : [...prevState.notes]
             }))
-    };
-
-    preventBlur = (e) => {
-        e.preventDefault();
     };
 
     handleAdding = () => {
