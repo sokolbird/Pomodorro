@@ -9,7 +9,8 @@ class Thoughts extends Component {
         super();
         this.state = {
             onAdding: false,
-            notes: []
+            notes: [],
+            addingNote: ''
         }
     }
 
@@ -21,17 +22,25 @@ class Thoughts extends Component {
                     {this.state.onAdding ? 'Cancel' : 'Add a note...'}
                     <img src={!this.state.onAdding ? plus : minus} alt='icon' style={{float: 'right'}}/>
                 </div>
-                {this.state.onAdding ? <Textarea onBlur={this.handleBlur.bind(this)}/> : ""}
+                {this.state.onAdding ? <Textarea onSave={this.handleSave.bind(this)}
+                                                 onChange={this.handleChange.bind(this)}
+                                                 value={this.state.addingNote}/> : ""}
                 <NotesList notesList={this.state.notes}/>
             </div>
         );
     }
 
-    handleBlur = () => {
-        this.setState(prevState => ({
-            notes: [...prevState.notes, 'test'],
-            onAdding: !this.state.onAdding
-        }))
+    handleChange = (value) => {
+        this.setState({
+            addingNote: value
+        });
+    };
+
+    handleSave = () => {
+            this.setState(prevState => ({
+                onAdding: !this.state.onAdding,
+                notes: this.state.addingNote ? [...prevState.notes, this.state.addingNote] : [...prevState.notes]
+            }))
     };
 
     preventBlur = (e) => {
@@ -40,9 +49,9 @@ class Thoughts extends Component {
 
     handleAdding = () => {
         this.setState({
-            onAdding: !this.state.onAdding
+            onAdding: !this.state.onAdding,
+            addingNote: ''
         });
-        console.log(this.state.onAdding)
     };
 }
 

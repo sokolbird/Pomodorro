@@ -272,6 +272,26 @@ textarea {
     width: 100%;
     border-bottom: 1px solid #454545;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.save {
+    height: 2em;
+    color: white;
+    font-size: 0.5em;
+    background: none;
+    border: none;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    outline: none;
+}
+
+.save:hover {
+    border-bottom: 1px solid white;
+    cursor: pointer;
 }
 
 .st0 {
@@ -349,6 +369,7 @@ textarea {
 }
 
 .list {
+    overflow-wrap: break-word;
     text-align: left;
     font-size: 1rem;
     list-style-type: none;
