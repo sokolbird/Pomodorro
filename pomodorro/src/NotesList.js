@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import Note from './Note.js'
 
-class NotesList extends Component {
+class NotesList extends PureComponent {
     render() {
         const notesElements = this.props.notesList.map((note, index) =>
             <li key={index}>
-                <pre style={{margin: '0', fontFamily: 'inherit'}}>{note}</pre>
+                <Note note={note} removeNote={() => this.props.removeNote(index)}/>
             </li>
         ).reverse();
 

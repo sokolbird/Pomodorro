@@ -25,7 +25,7 @@ class Thoughts extends Component {
                 {this.state.onAdding ? <Textarea onSave={this.handleSave.bind(this)}
                                                  onChange={this.handleChange.bind(this)}
                                                  value={this.state.addingNote}/> : ""}
-                <NotesList notesList={this.state.notes}/>
+                <NotesList notesList={this.state.notes} removeNote={this.removeNote}/>
             </div>
         );
     }
@@ -37,10 +37,14 @@ class Thoughts extends Component {
     };
 
     handleSave = () => {
+        if (this.state.addingNote) {
             this.setState(prevState => ({
-                onAdding: !this.state.onAdding,
-                notes: this.state.addingNote ? [...prevState.notes, this.state.addingNote] : [...prevState.notes]
+                notes: [...prevState.notes, this.state.addingNote]
             }))
+        }
+        this.setState({
+            onAdding: !this.state.onAdding
+        })
     };
 
     handleAdding = () => {
@@ -49,6 +53,14 @@ class Thoughts extends Component {
             addingNote: ''
         });
     };
+
+    removeNote = (id) => {
+        let notesCopy = this.state.notes.slice();
+        notesCopy.splice(id, 1);
+        this.setState({
+            notes: notesCopy
+        })
+    }
 }
 
 export default Thoughts;
