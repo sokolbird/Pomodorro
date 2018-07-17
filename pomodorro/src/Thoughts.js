@@ -12,7 +12,8 @@ class Thoughts extends Component {
             notes: [],
             noteAdded: '',
             onEditing: false,
-            noteOnEditing: ''
+            noteOnEditing: '',
+            editingNoteId: 0
         }
     }
 
@@ -51,7 +52,8 @@ class Thoughts extends Component {
             let notesCopy = this.state.notes.slice();
             this.setState({
                 onEditing: !this.state.onEditing,
-                noteOnEditing: notesCopy.splice(id, 1),
+                noteOnEditing: notesCopy.splice(id, 1)[0],
+                editingNoteId: id,
                 notes: notesCopy
             })
         }
@@ -65,14 +67,16 @@ class Thoughts extends Component {
 
     saveEdited = () => {
         if (this.state.noteOnEditing) {
-            this.setState(prevState => ({
-                notes: [...prevState.notes, this.state.noteOnEditing]
-            }))
+            let notesCopy = this.state.notes.slice();
+            notesCopy.splice(this.state.editingNoteId, 0, this.state.noteOnEditing);
+            this.setState({
+                notes: notesCopy
+            })
         }
 
         this.setState({
             onEditing: !this.state.onEditing
-        })
+        });
     };
 
     handleChangeAdding = (value) => {
