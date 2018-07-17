@@ -252,6 +252,15 @@ body {
     cursor: pointer;
 }
 
+.adding-disabled {
+    opacity: 0.7;
+}
+
+.adding-disabled:hover {
+    cursor: auto;
+    background: none;
+}
+
 textarea {
     box-sizing: border-box;
     resize: none;

@@ -15,9 +15,9 @@ class Note extends Component {
                 <div>{this.props.note}</div>
                 <button className="dots" onClick={this.handleMenuOpen} onBlur={this.handleMenuBlur}>
                     <img src={dots} alt="menu" title="Open menu"/>
-                    <div className={this.state.menuOpened ? 'show-pop pop' : 'pop'}>
+                    <div className={this.state.menuOpened && this.props.menuNotDisabled ? 'show-pop pop' : 'pop'}>
                         <div className="menu-item" onClick={this.props.removeNote}>Delete</div>
-                        <div className="menu-item">Edit</div>
+                        <div className="menu-item" onClick={this.props.editNote}>Edit</div>
                     </div>
                 </button>
             </div>

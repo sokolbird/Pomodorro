@@ -10,7 +10,9 @@ class Thoughts extends Component {
         this.state = {
             onAdding: false,
             notes: [],
-            addingNote: ''
+            noteAdded: '',
+            onEditing: false,
+            noteOnEditing: ''
         }
     }
 
@@ -18,40 +20,86 @@ class Thoughts extends Component {
         return (
             <div className="thoughts">
                 <h5 className="card-header">Notes</h5>
-                <div className="adding-note" onClick={this.handleAdding}>
+                <div className={this.state.onEditing ? "adding-note adding-disabled" : "adding-note"}
+                     onClick={this.handleAdding}>
+
                     {this.state.onAdding ? 'Cancel' : 'Add a note...'}
-                    <img src={!this.state.onAdding ? plus : minus} alt='icon' style={{float: 'right'}}/>
+
+                    <img src={this.state.onAdding ? minus : plus}
+                         alt='icon' style={{float: 'right'}}/>
                 </div>
-                {this.state.onAdding ? <Textarea onSave={this.handleSave.bind(this)}
-                                                 onChange={this.handleChange.bind(this)}
-                                                 value={this.state.addingNote}/> : ""}
-                <NotesList notesList={this.state.notes} removeNote={this.removeNote}/>
+
+                {this.state.onAdding ? <Textarea onSave={this.saveAdded.bind(this)}
+                                                 onChange={this.handleChangeAdding.bind(this)}
+                                                 value={this.state.noteAdded}/> : ""}
+
+                {this.state.onEditing ? <Textarea onSave={this.saveEdited.bind(this)}
+                                                  onChange={this.handleChangeEditing.bind(this)}
+                                                  value={this.state.noteOnEditing}/> : ""}
+
+                <NotesList notesList={this.state.notes}
+                           removeNote={this.removeNote}
+                           editNote={this.handleEditing}
+                           menuNotDisabled={!this.state.onEditing && !this.state.onAdding}
+                />
             </div>
         );
     }
 
-    handleChange = (value) => {
+    handleEditing = (id) => {
+        if (!this.state.onAdding) {
+            let notesCopy = this.state.notes.slice();
+            this.setState({
+                onEditing: !this.state.onEditing,
+                noteOnEditing: notesCopy.splice(id, 1),
+                notes: notesCopy
+            })
+        }
+    };
+
+    handleChangeEditing = (value) => {
         this.setState({
-            addingNote: value
+            noteOnEditing: value
         });
     };
 
-    handleSave = () => {
-        if (this.state.addingNote) {
+    saveEdited = () => {
+        if (this.state.noteOnEditing) {
             this.setState(prevState => ({
-                notes: [...prevState.notes, this.state.addingNote]
+                notes: [...prevState.notes, this.state.noteOnEditing]
             }))
         }
+
+        this.setState({
+            onEditing: !this.state.onEditing
+        })
+    };
+
+    handleChangeAdding = (value) => {
+        this.setState({
+            noteAdded: value
+        });
+    };
+
+    saveAdded = () => {
+        if (this.state.noteAdded) {
+            this.setState(prevState => ({
+                notes: [...prevState.notes, this.state.noteAdded]
+            }))
+        }
+
         this.setState({
             onAdding: !this.state.onAdding
         })
     };
 
     handleAdding = () => {
-        this.setState({
-            onAdding: !this.state.onAdding,
-            addingNote: ''
-        });
+        if (!this.state.onEditing) {
+            this.setState({
+                onAdding: !this.state.onAdding,
+                noteAdded: ''
+            });
+        }
     };
 
     removeNote = (id) => {
@@ -60,7 +108,7 @@ class Thoughts extends Component {
         this.setState({
             notes: notesCopy
         })
-    }
+    };
 }
 
 export default Thoughts;
