@@ -5,16 +5,30 @@ import PomodorosLeft from './PomodorosLeft.js'
 import Thoughts from './Thoughts.js'
 
 class App extends Component {
-  render() {
-    return (
-      <div className='wrap'>
-          <Logo/>
-          <Main/>
-          <PomodorosLeft/>
-          <Thoughts/>
-      </div>
-    );
-  }
+    constructor() {
+        super();
+
+        this.state = {
+            pomodoroCount: 1
+        }
+    }
+
+    incrementCount = () => {
+        this.setState({
+            pomodoroCount: this.state.pomodoroCount + 1
+        })
+    };
+
+    render() {
+        return (
+            <div className='wrap'>
+                <Logo/>
+                <Main pomodoroCount={this.state.pomodoroCount} incrementCount={this.incrementCount.bind(this)}/>
+                <PomodorosLeft pomodoroCount={this.state.pomodoroCount}/>
+                <Thoughts/>
+            </div>
+        );
+    }
 }
 
 export default App;
