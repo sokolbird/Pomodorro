@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Task from './Task.js'
 import Controls from './Controls.js'
 import Timer from './Timer.js'
+import sound from './sound.wav'
 
 const workTime = 25 * 60;
 const smallBreak = 5 * 60;
@@ -33,6 +34,7 @@ class Main extends Component {
                 <Timer isStarted        = {this.state.isStarted}
                        tomatoClasses    = {this.state.tomatoClasses}
                        remainingTimeSec = {this.state.remainingTimeSec}/>
+                <audio id="sound" src={sound} preload="auto"/>
             </div>
         )
     }
@@ -61,7 +63,8 @@ class Main extends Component {
 
     endCurrentTimer = () => {
         clearInterval(this.timer);
-        this.props.incrementCount();
+        this.props.incrementTimerCount();
+        document.getElementById("sound").play();
 
         this.setState({
             isStarted: false,
@@ -71,7 +74,7 @@ class Main extends Component {
     };
 
     setNextTimer = () => {
-        if (this.props.pomodoroCount % 8 === 0) {
+        if (this.props.timerCount % 8 === 0) {
             if (this.state.isBreak) {
                 this.setState({remainingTimeSec : bigBreak});
                 this.initialTime = bigBreak;

@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import dots from './dots-horizontal.svg'
 
 class Note extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            menuOpened: false
-        }
-    }
+    state = { menuOpened: false };
 
     render() {
         return (

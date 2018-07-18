@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
 
 class Task extends Component {
-    constructor() {
-        super();
-        this.state = {
-            task: ''
-        }
-    }
+    state = { task: '' };
 
     render() {
         return (

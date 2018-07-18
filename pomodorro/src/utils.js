@@ -5,4 +5,8 @@ function secToMin(sec) {
     return ('0' + minutes).slice(-2) + ":" + ('0' + seconds).slice(-2);
 }
 
-export {secToMin};
+function getPomodoro(timersCount) {
+    return Math.ceil(timersCount / 2);
+}
+
+export {secToMin, getPomodoro};

@@ -470,3 +470,11 @@ textarea {
 .menu-item:hover {
     color: #707070;
 }
+
+.pomodoro-list > li {
+    text-decoration: line-through;
+}
+
+.pomodoro-list > li:last-child {
+    text-decoration: none;
+}

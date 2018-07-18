@@ -3,28 +3,34 @@ import Logo from './Logo.js'
 import Main from './Main.js'
 import PomodorosLeft from './PomodorosLeft.js'
 import Thoughts from './Thoughts.js'
+import { getPomodoro } from "./utils.js";
 
 class App extends Component {
-    constructor() {
-        super();
+    state = {
+        timerCount: 1,
+        pomodoroList: [1]
+    };
 
-        this.state = {
-            pomodoroCount: 1
-        }
-    }
-
-    incrementCount = () => {
+    incrementTimerCount = () => {
         this.setState({
-            pomodoroCount: this.state.pomodoroCount + 1
-        })
+            timerCount: this.state.timerCount + 1,
+        });
+
+        if (this.state.timerCount % 2 !== 0) {
+            let pomodoroNumber = getPomodoro(this.state.timerCount);
+            this.setState(prevState => ({
+                pomodoroList: [...prevState.pomodoroList, pomodoroNumber]
+            }))
+        }
     };
 
     render() {
         return (
             <div className='wrap'>
                 <Logo/>
-                <Main pomodoroCount={this.state.pomodoroCount} incrementCount={this.incrementCount.bind(this)}/>
-                <PomodorosLeft pomodoroCount={this.state.pomodoroCount}/>
+                <Main timerCount={this.state.timerCount} 
+                      incrementTimerCount={this.incrementTimerCount.bind(this)}/>
+                <PomodorosLeft pomodoroList={this.state.pomodoroList}/>
                 <Thoughts/>
             </div>
         );

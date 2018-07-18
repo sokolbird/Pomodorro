@@ -4,9 +4,11 @@ import { secToMin } from './utils.js'
 
 class Timer extends Component {
     render() {
+        let time = secToMin(this.props.remainingTimeSec);
+        document.title = 'Pomodorro | ' + time;
         return (
             <div className={this.props.tomatoClasses}>
-                <div className="timer">{secToMin(this.props.remainingTimeSec)}</div>
+                <div className="timer">{time}</div>
                 <img src={tomato} alt="timer"/>
             </div>
         )

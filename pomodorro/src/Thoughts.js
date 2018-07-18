@@ -5,17 +5,14 @@ import plus from './plus-box.svg'
 import minus from './minus-box.svg'
 
 class Thoughts extends Component {
-    constructor() {
-        super();
-        this.state = {
-            onAdding: false,
-            notes: [],
-            noteAdded: '',
-            onEditing: false,
-            noteOnEditing: '',
-            editingNoteId: 0
-        }
-    }
+    state = {
+        onAdding: false,
+        notes: [],
+        noteAdded: '',
+        onEditing: false,
+        noteOnEditing: '',
+        editingNoteId: 0
+    };
 
     render() {
         return (

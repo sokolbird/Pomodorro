@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 
 class PomodorosLeft extends Component {
     render() {
+        const pomodoros = this.props.pomodoroList.map(pomodoroNumber =>
+            <li key={pomodoroNumber}>Pomodoro #{pomodoroNumber}</li>
+        );
+
         return (
             <div className="tomatoes-left">
                 <h5 className="card-header">Pomodoros left</h5>
-                <ul className="list">
-                    <li>Pomodoro {this.props.pomodoroCount}</li>
-                    <li>Pomodoro #2</li>
-                    <li>Pomodoro #3</li>
-                    <li>Pomodoro #4</li>
-                    <li>Pomodoro #5</li>
+                <ul className="list pomodoro-list">
+                    {pomodoros}
                 </ul>
             </div>
         );
