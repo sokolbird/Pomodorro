@@ -71,7 +71,7 @@ body {
                 "controls"
                 "pomodor";
     grid-area: main;
-    grid-gap: 20px;
+    grid-gap: 25px;
 }
 
 .logo {

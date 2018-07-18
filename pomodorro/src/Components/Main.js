@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Task from './Task.js'
 import Controls from './Controls.js'
 import Timer from './Timer.js'
-import sound from './sound.wav'
+import sound from '../Media/sound.wav'
 
 const workTime = 25 * 60;
 const smallBreak = 5 * 60;

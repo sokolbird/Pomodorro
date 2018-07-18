@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import dots from './dots-horizontal.svg'
+import dots from '../Media/dots-horizontal.svg'
 
 class Note extends Component {
     state = { menuOpened: false };

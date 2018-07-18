@@ -3,7 +3,7 @@ import Logo from './Logo.js'
 import Main from './Main.js'
 import PomodorosLeft from './PomodorosLeft.js'
 import Thoughts from './Thoughts.js'
-import { getPomodoro } from "./utils.js";
+import { getPomodoro } from "../utils.js";
 
 class App extends Component {
     state = {

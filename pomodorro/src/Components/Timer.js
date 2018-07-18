@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import tomato from './tomato.svg'
-import { secToMin } from './utils.js'
+import tomato from '../Media/tomato.svg'
+import { secToMin } from '../utils.js'
 
 class Timer extends Component {
     render() {

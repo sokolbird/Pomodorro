@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Textarea from './Textarea.js'
 import NotesList from './NotesList.js'
-import plus from './plus-box.svg'
-import minus from './minus-box.svg'
+import plus from '../Media/plus-box.svg'
+import minus from '../Media/minus-box.svg'
 
 class Thoughts extends Component {
     state = {

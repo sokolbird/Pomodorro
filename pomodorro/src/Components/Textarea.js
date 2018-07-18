@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import save from './save.svg'
+import save from '../Media/save.svg'
 
 class Textarea extends Component {
     render() {
