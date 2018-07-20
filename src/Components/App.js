@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Menu from './Menu.js'
 import Logo from './Logo.js'
 import Main from './Main.js'
 import PomodorosLeft from './PomodorosLeft.js'
@@ -26,12 +27,19 @@ class App extends Component {
 
     render() {
         return (
-            <div className='wrap'>
-                <Logo/>
-                <Main timerCount={this.state.timerCount} 
-                      incrementTimerCount={this.incrementTimerCount.bind(this)}/>
-                <PomodorosLeft pomodoroList={this.state.pomodoroList}/>
-                <Thoughts/>
+            <div>
+                <input type="checkbox" id="nav-trigger" className="nav-trigger"/>
+                <label htmlFor="nav-trigger" className="nav-trigger-label">
+                    <span/>
+                </label>
+                <Menu/>
+                <div className='wrap'>
+                    <Logo/>
+                    <Main timerCount={this.state.timerCount}
+                          incrementTimerCount={this.incrementTimerCount.bind(this)}/>
+                    <PomodorosLeft pomodoroList={this.state.pomodoroList}/>
+                    <Thoughts/>
+                </div>
             </div>
         );
     }
