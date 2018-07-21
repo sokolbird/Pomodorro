@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/lists.css'
 
 class PomodorosLeft extends Component {
     render() {

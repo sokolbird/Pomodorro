@@ -1,0 +1,77 @@
+.green-btn, .red-btn, .seagreen-btn {
+    color: white;
+    font-size: 0.5em;
+    width: 25%;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.4s;
+}
+
+.green-btn {
+    background: #28a745;
+    border: 1px solid #007E33;
+}
+
+.green-btn:hover {
+    background: #007E33;
+    cursor: pointer;
+}
+
+.green-btn:active {
+    background: #003e1e;
+    border: 1px solid #003117;
+    cursor: pointer;
+}
+
+.green-btn:disabled {
+    opacity: 0.7;
+    cursor: auto;
+}
+
+.green-btn:disabled:hover {
+    background: #28a745;
+    border: 1px solid #007E33;
+}
+
+.red-btn {
+    background: #dc3545;
+    border: 1px solid #b02d3d;
+}
+
+.red-btn:hover {
+    cursor: pointer;
+    background: #b02d3d;
+}
+
+.red-btn:active {
+    cursor: pointer;
+    background: #721d28;
+    border: 1px solid #4a131a;
+}
+
+.red-btn:disabled {
+    opacity: 0.7;
+    cursor: auto;
+}
+
+.red-btn:disabled:hover {
+    background: #dc3545;
+    border: 1px solid #b02d3d;
+}
+
+.seagreen-btn {
+    background: #20c997;
+    border: 1px solid #147d5d;
+}
+
+.seagreen-btn:hover {
+    background: #147d5d;
+    cursor: pointer;
+}
+
+.seagreen-btn:active {
+    background: #0d533e;
+    border: 1px solid #083527;
+    cursor: pointer;
+}

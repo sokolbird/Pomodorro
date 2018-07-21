@@ -3,6 +3,7 @@ import Textarea from './Textarea.js'
 import NotesList from './NotesList.js'
 import plus from '../Media/plus-box.svg'
 import minus from '../Media/minus-box.svg'
+import '../styles/lists.css'
 
 class Notes extends Component {
     state = {

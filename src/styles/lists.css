@@ -1,0 +1,99 @@
+.card-header {
+    display: block;
+    font-size: 0.8em;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 10px 10px;
+    background: #303030;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+
+.list {
+    color: white;
+    text-align: left;
+    font-size: 1rem;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list > li {
+    word-wrap: break-word;
+    border-bottom: 1px solid #454545;
+    padding: 20px;
+}
+
+.list > li:last-child {
+    border-bottom: none;
+}
+
+.dots .pop {
+    font-size: 0.8em;
+    visibility: hidden;
+    width: 60px;
+    background-color: #151515;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 999;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -30px;
+    box-shadow: 0 0 10px #050505;
+}
+
+.dots .show-pop {
+    visibility: visible;
+    animation: fade-in .5s;
+}
+
+.dots .pop::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border: 5px solid;
+    border-color: #151515 transparent transparent transparent;
+}
+
+.dots {
+    height: 12px;
+    background: none;
+    border: none;
+    padding: 0;
+    align-self: flex-end;
+    outline: none;
+    position: relative;
+    display: inline-block;
+}
+
+.dots:hover {
+    cursor: pointer;
+}
+
+.note-li {
+    white-space: pre-line;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    padding: 3px 0;
+}
+
+.menu-item:hover {
+    color: #707070;
+}
+
+.pomodoro-list > li {
+    text-decoration: line-through;
+}
+
+.pomodoro-list > li:last-child {
+    text-decoration: none;
+}

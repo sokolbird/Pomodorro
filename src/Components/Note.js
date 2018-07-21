@@ -8,13 +8,13 @@ class Note extends Component {
         return (
             <div className="note-li">
                 <div>{this.props.note}</div>
-                <button className="dots" onClick={this.handleMenuOpen} onBlur={this.handleMenuBlur}>
+                <div className="dots" tabIndex={10} onClick={this.handleMenuOpen} onBlur={this.handleMenuBlur}>
                     <img src={dots} alt="menu" title="Open menu"/>
                     <div className={this.state.menuOpened && this.props.menuNotDisabled ? 'show-pop pop' : 'pop'}>
                         <div className="menu-item" onClick={this.props.removeNote}>Delete</div>
                         <div className="menu-item" onClick={this.props.editNote}>Edit</div>
                     </div>
-                </button>
+                </div>
             </div>
         )
     }

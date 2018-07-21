@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import save from '../Media/save.svg'
+import '../styles/textarea.css'
 
 class Textarea extends Component {
     render() {

@@ -4,6 +4,7 @@ import github from '../Media/github-circle.svg';
 import inst from '../Media/instagram.svg'
 import telegram from '../Media/telegram.svg'
 import help from '../Media/help.svg'
+import '../styles/navigation.css'
 
 class Menu extends Component {
     render() {

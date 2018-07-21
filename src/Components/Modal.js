@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import InputMinutes from './InputMinutes.js'
+import '../styles/modal.css'
+import '../styles/buttons.css'
 
 class Modal extends Component {
     componentWillMount() {
@@ -16,9 +19,12 @@ class Modal extends Component {
             <div className="modal">
                 <div className="settings-block">
                     <h5 className="settings-header">Settings</h5>
+                    <InputMinutes/>
+                    <InputMinutes/>
+                    <InputMinutes/>
                     <div className="settings-footer">
-                        <button className="stop" onClick={this.props.closeSettings}>Cancel</button>
-                        <button className="start">Apply</button>
+                        <button className="red-btn" onClick={this.props.closeSettings}>Cancel</button>
+                        <button className="green-btn">Apply</button>
                     </div>
                 </div>
             </div>,

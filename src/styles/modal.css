@@ -1,0 +1,65 @@
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(16, 16, 16, 0.8);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    animation: fade-in 100ms linear;
+}
+
+.settings-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2em;
+    width: 50%;
+    min-width: 600px;
+    height: 70%;
+    max-height: 600px;
+    background: rgba(32, 32, 32, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 15px 5px rgba(16, 16, 16, 0.5);
+}
+
+.settings-header {
+    margin: 0;
+    font-size: 0.8em;
+    display: block;
+    padding: 10px 10px;
+    border-bottom: 1px solid #303030;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.settings-footer {
+    font-size: 0.9em;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    border-top: 1px solid #303030;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.settings-block .green-btn {
+    width: 100px;
+    margin-left: 20px;
+
+}
+
+.settings-block .red-btn {
+    width: 100px;
+}
