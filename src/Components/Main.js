@@ -4,15 +4,16 @@ import Controls from './Controls.js'
 import Timer from './Timer.js'
 import sound from '../Media/sound.wav'
 
-const workTime = 25 * 60;
-const smallBreak = 5 * 60;
-const bigBreak = 15 * 60;
-
 class Main extends Component {
     constructor(props) {
         super(props);
+
+        this.workTime = 25 * 60;
+        this.smallBreak = 5 * 60;
+        this.bigBreak = 15 * 60;
+
         this.timer = null;
-        this.initialTime = workTime;
+        this.initialTime = this.workTime;
 
         this.state = {
             isStarted: false,
@@ -74,25 +75,19 @@ class Main extends Component {
     };
 
     setNextTimer = () => {
-        if (this.props.timerCount % 8 === 0) {
-            if (this.state.isBreak) {
-                this.setState({remainingTimeSec : bigBreak});
-                this.initialTime = bigBreak;
-            }
-            else {
-                this.setState({remainingTimeSec : workTime});
-                this.initialTime = workTime;
-            }
+        if (!this.state.isBreak) {
+            this.setState({remainingTimeSec : this.workTime});
+            this.initialTime = this.workTime;
         }
-        else {
-            if (this.state.isBreak) {
-                this.setState({remainingTimeSec : smallBreak});
-                this.initialTime = smallBreak;
-            }
-            else {
-                this.setState({remainingTimeSec : workTime});
-                this.initialTime = workTime;
-            }
+
+        if (this.props.timerCount % 8 === 0 && this.state.isBreak) {
+            this.setState({remainingTimeSec: this.bigBreak});
+            this.initialTime = this.bigBreak;
+        }
+
+        if (this.props.timerCount % 8 !== 0 && this.state.isBreak) {
+            this.setState({remainingTimeSec : this.smallBreak});
+            this.initialTime = this.smallBreak;
         }
     };
 

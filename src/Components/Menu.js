@@ -3,6 +3,7 @@ import settings from '../Media/settings.svg';
 import github from '../Media/github-circle.svg';
 import inst from '../Media/instagram.svg'
 import telegram from '../Media/telegram.svg'
+import help from '../Media/help.svg'
 
 class Menu extends Component {
     render() {
@@ -10,11 +11,18 @@ class Menu extends Component {
             <nav className="nav">
                 <h1 className="nav-header">Menu</h1>
                 <ul className="nav-list">
-                    <li className="nav-item">
+                    <li className="nav-item" onClick={this.props.openSettings}>
                         Settings
                         <img src={settings} alt="settings" className="nav-icon"/>
                     </li>
+                    <li className="nav-item">
+                        <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">
+                            What is pomodoro?
+                            <img src={help} alt="what is pomodoro" className="nav-icon"/>
+                        </a>
+                    </li>
                 </ul>
+
                 <div className="nav-footer">
                     <div className="nav-footer-header">Contacts</div>
                     <div className="contacts-wrapper">

@@ -14,6 +14,11 @@ a {
     outline: none;
 }
 
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
 @keyframes fade-in {
     0% { opacity: 0; }
     100% { opacity: 1; }
@@ -34,37 +39,12 @@ a {
             "left main thoughts";
 }
 
-@media screen and (max-width: 768px) {
-    .wrap {
-        margin: 15px 0;
-        grid-template-rows: repeat(4, auto);
-        grid-template-columns: 1fr minmax(90%, 1fr) 1fr;
-        grid-template-areas:
-                ". logo ."
-                ". main ."
-                ". thoughts ."
-                ". left .";
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .wrap {
-        margin: 15px 0;
-        grid-template-rows: repeat(4, auto);
-        grid-template-columns: 1fr minmax(85%, 1fr) 1fr;
-        grid-template-areas:
-                ". logo ."
-                ". main ."
-                ". thoughts ."
-                ". left .";
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .wrap {
-        grid-gap: 10px;
-        grid-template-rows: repeat(4, auto);
-    }
+.logo {
+    align-self: center;
+    fill: white;
+    stroke: white;
+    width: 100%;
+    grid-area: logo;
 }
 
 .main {
@@ -77,14 +57,6 @@ a {
                 "pomodor";
     grid-area: main;
     grid-gap: 25px;
-}
-
-.logo {
-    align-self: center;
-    fill: white;
-    stroke: white;
-    width: 100%;
-    grid-area: logo;
 }
 
 .task {
@@ -323,6 +295,7 @@ textarea {
 }
 
 .note-li {
+    white-space: pre-line;
     display: flex;
     flex-direction: column;
 }
@@ -400,6 +373,7 @@ textarea {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
+
 
 .list {
     color: white;
@@ -486,6 +460,7 @@ textarea {
 }
 
 .nav {
+    will-change: transform;
     transform: translateX(-300px);
     z-index: 5;
     top: 0;
@@ -526,6 +501,12 @@ textarea {
     cursor: pointer;
 }
 
+.nav-item a {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .nav-icon {
     height: 100%;
 }
@@ -561,7 +542,7 @@ textarea {
 }
 
 label[for="nav-trigger"] {
-    position: fixed;
+    position: absolute;
     top: 35px;
     left: 30px;
     z-index: 6;
@@ -615,3 +596,175 @@ label[for="nav-trigger"] {
 .nav-trigger:checked ~ label > span {
     height: 0;
 }
+
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(16, 16, 16, 0.8);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    animation: fade-in 100ms linear;
+}
+
+.settings-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 2em;
+    width: 50%;
+    min-width: 600px;
+    height: 70%;
+    max-height: 600px;
+    background: rgba(32, 32, 32, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 15px 5px rgba(16, 16, 16, 0.5);
+}
+
+.settings-header {
+    margin: 0;
+    font-size: 0.8em;
+    display: block;
+    padding: 10px 10px;
+    border-bottom: 1px solid #303030;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.settings-footer {
+    font-size: 0.9em;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    border-top: 1px solid #303030;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.settings-block .start {
+    width: 100px;
+    margin-left: 20px;
+
+}
+
+.settings-block .stop {
+    width: 100px;
+}
+
+@media screen and (max-width: 768px) {
+    .wrap {
+        margin: 15px 0;
+        grid-template-rows: repeat(4, auto);
+        grid-template-columns: 1fr minmax(90%, 1fr) 1fr;
+        grid-template-areas:
+                ". logo ."
+                ". main ."
+                ". thoughts ."
+                ". left .";
+    }
+
+    .logo {
+        width: 80%;
+        justify-self: center;
+    }
+
+    .nav-trigger-label span,
+    .nav-trigger-label span::before,
+    .nav-trigger-label span::after {
+        margin-top: -1px;
+        margin-left: -15px;
+        width: 30px;
+        height: 2px;
+    }
+
+    .nav-trigger-label span::before {
+        transform: translateY(-7px);
+    }
+
+    .nav-trigger-label span::after {
+        transform: translateY(7px);
+    }
+
+    label[for="nav-trigger"] {
+        top: 40px;
+        left: 5%;
+        z-index: 9;
+    }
+
+    .settings-block {
+        min-width: 70%;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .wrap {
+        margin: 15px 0;
+        grid-template-rows: repeat(4, auto);
+        grid-template-columns: 1fr minmax(85%, 1fr) 1fr;
+        grid-template-areas:
+                ". logo ."
+                ". main ."
+                ". thoughts ."
+                ". left .";
+    }
+
+    label[for="nav-trigger"] {
+        top: 20px;
+        left: 12px;
+        z-index: 9;
+    }
+
+    .nav-trigger-label span,
+    .nav-trigger-label span::before,
+    .nav-trigger-label span::after {
+        margin-top: -1px;
+        margin-left: -10px;
+        width: 20px;
+        height: 2px;
+    }
+
+    .nav-trigger-label span::before {
+        transform: translateY(-5px);
+    }
+
+    .nav-trigger-label span::after {
+        transform: translateY(5px);
+    }
+
+    .settings-block {
+        min-width: 90%;
+    }
+
+    .settings-footer {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .wrap {
+        grid-gap: 10px;
+        grid-template-rows: repeat(4, auto);
+    }
+
+    label[for="nav-trigger"] {
+        top: 15px;
+        left: 10px;
+        z-index: 9;
+    }
+
+    .settings-block {
+        min-width: 300px;
+    }
+}
+

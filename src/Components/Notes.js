@@ -4,7 +4,7 @@ import NotesList from './NotesList.js'
 import plus from '../Media/plus-box.svg'
 import minus from '../Media/minus-box.svg'
 
-class Thoughts extends Component {
+class Notes extends Component {
     state = {
         onAdding: false,
         notes: [],
@@ -112,4 +112,4 @@ class Thoughts extends Component {
     };
 }
 
-export default Thoughts;
+export default Notes;
