@@ -9,10 +9,6 @@ function getPomodoro(timersCount) {
     return Math.ceil(timersCount / 2);
 }
 
-function timerEnded(timerName) {
-
-}
-
 function notifyTimeLeft(timerName) {
     let options = {
         tag : "pomodorro",
