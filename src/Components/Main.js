@@ -3,6 +3,7 @@ import Task from './Task.js'
 import Controls from './Controls.js'
 import Timer from './Timer.js'
 import sound from '../Media/sound.wav'
+import {sendNotification} from "../utils";
 
 class Main extends Component {
     constructor(props) {
@@ -50,6 +51,7 @@ class Main extends Component {
     }
 
     handleStart = () => {
+        sendNotification();
         this.setState({
             isStarted: true,
             tomatoClasses: 'tomato tomato-spin'
@@ -81,6 +83,8 @@ class Main extends Component {
             tomatoClasses: 'tomato',
             isBreak: !this.state.isBreak,
         });
+
+
     };
 
     setNextTimer = () => {
