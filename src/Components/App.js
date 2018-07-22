@@ -12,7 +12,11 @@ class App extends Component {
     state = {
         timerCount: 1,
         pomodoroList: [1],
-        isSettingsOpen: false
+        isSettingsOpen: false,
+        bigBreakEnabled: true,
+        workTime: 25,
+        smallBreak: 5,
+        bigBreak: 15
     };
 
     render() {
@@ -29,13 +33,22 @@ class App extends Component {
                 <div className="wrap" onClick={this.handleMenuBlur}>
                     <Logo/>
                     <Main timerCount={this.state.timerCount}
-                          incrementTimerCount={this.incrementTimerCount.bind(this)}/>
+                          incrementTimerCount={this.incrementTimerCount.bind(this)}
+                          workTime={this.state.workTime * 60}
+                          smallBreak={this.state.smallBreak * 60}
+                          bigBreak={this.state.bigBreak * 60}
+                          bigBreakEnabled={this.state.bigBreakEnabled}/>
                     <PomodorosLeft pomodoroList={this.state.pomodoroList}/>
                     <Notes/>
                 </div>
 
                 <div>
-                    {this.state.isSettingsOpen && <Modal closeSettings={this.toggleSettings.bind(this)}/>}
+                    {this.state.isSettingsOpen && <Modal closeSettings={this.toggleSettings.bind(this)}
+                                                         applySettings={this.applySettings.bind(this)}
+                                                         workTime={this.state.workTime}
+                                                         smallBreak={this.state.smallBreak}
+                                                         bigBreak={this.state.bigBreak}
+                                                         bigBreakEnabled={this.state.bigBreakEnabled}/>}
                 </div>
             </main>
         );
@@ -63,6 +76,16 @@ class App extends Component {
             isSettingsOpen: !this.state.isSettingsOpen
         });
         this.check.checked = false;
+    };
+
+    applySettings = (newTimers) => {
+        this.setState({
+            bigBreakEnabled: newTimers.bigBreakEnabled,
+            workTime: newTimers.workTime,
+            smallBreak: newTimers.smallBreak,
+            bigBreak: newTimers.bigBreak
+        });
+        this.toggleSettings();
     }
 }
 

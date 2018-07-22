@@ -5,6 +5,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .input-number input[type=number] {
+    -moz-appearance: textfield;
     box-sizing: border-box;
     position: absolute;
     left: 50%;
@@ -15,13 +16,13 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 50%;
     text-align: center;
     border: none;
-    font-size: 0.6em;
+    font-size: 1.2rem;
     outline: none;
 }
 
 .input-number {
     position: relative;
-    width: 110px;
+    width: 100px;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -35,6 +36,7 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: rgba(255, 255, 255, 0.2);
     font-size: 25px;
     cursor: pointer;
+    user-select: none;
 }
 
 .input-number div:hover {

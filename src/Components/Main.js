@@ -7,20 +7,29 @@ import sound from '../Media/sound.wav'
 class Main extends Component {
     constructor(props) {
         super(props);
-
-        this.workTime = 25 * 60;
-        this.smallBreak = 5 * 60;
-        this.bigBreak = 15 * 60;
-
         this.timer = null;
-        this.initialTime = this.workTime;
 
         this.state = {
+            initialTime: this.props.workTime,
+
             isStarted: false,
             tomatoClasses: 'tomato',
-            remainingTimeSec: this.initialTime,
-            isBreak: false
+            remainingTimeSec: this.props.workTime,
+            isBreak: false,
+            workTime: this.props.workTime,
+            smallBreak: this.props.smallBreak,
+            bigBreak: this.props.bigBreak
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            initialTime: nextProps.workTime,
+            workTime: nextProps.workTime,
+            smallBreak: nextProps.smallBreak,
+            bigBreak: nextProps.bigBreak,
+            remainingTimeSec: nextProps.workTime
+        })
     }
 
     render() {
@@ -76,18 +85,26 @@ class Main extends Component {
 
     setNextTimer = () => {
         if (!this.state.isBreak) {
-            this.setState({remainingTimeSec : this.workTime});
-            this.initialTime = this.workTime;
+            this.setState({
+                remainingTimeSec : this.state.workTime,
+                initialTime: this.state.workTime
+            });
+            return;
         }
 
-        if (this.props.timerCount % 8 === 0 && this.state.isBreak) {
-            this.setState({remainingTimeSec: this.bigBreak});
-            this.initialTime = this.bigBreak;
+        if (this.props.timerCount % 8 === 0 && this.props.bigBreakEnabled) {
+            this.setState({
+                remainingTimeSec : this.state.bigBreak,
+                initialTime: this.state.bigBreak
+            });
+            return;
         }
 
-        if (this.props.timerCount % 8 !== 0 && this.state.isBreak) {
-            this.setState({remainingTimeSec : this.smallBreak});
-            this.initialTime = this.smallBreak;
+        if (this.props.timerCount % 8 !== 0) {
+            this.setState({
+                remainingTimeSec : this.state.smallBreak,
+                initialTime: this.state.smallBreak
+            });
         }
     };
 
@@ -96,7 +113,7 @@ class Main extends Component {
         this.setState({
             isStarted: false,
             tomatoClasses: 'tomato',
-            remainingTimeSec: this.initialTime
+            remainingTimeSec: this.state.initialTime
         })
     };
 
