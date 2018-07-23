@@ -384,7 +384,7 @@ label[for="nav-trigger"] {
     }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 359px) {
     .wrap {
         grid-gap: 10px;
         grid-template-rows: repeat(4, auto);
@@ -398,6 +398,10 @@ label[for="nav-trigger"] {
 
     .settings-block {
         min-width: 300px;
+    }
+
+    .setting {
+        margin: 15px !important;
     }
 }
 

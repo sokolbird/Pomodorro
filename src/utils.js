@@ -25,7 +25,7 @@ function notifyTimeLeft(isBreak) {
         body : body,
         icon: 'https://raw.githubusercontent.com/sokolbird/Pomodorro/master/src/tomato.png',
         vibrate: [200, 100, 200, 100, 200],
-        badge: 'https://raw.githubusercontent.com/sokolbird/Pomodorro/master/src/badge.png',
+        badge: 'https://raw.githubusercontent.com/sokolbird/Pomodorro/master/src/Media/badge.png',
     };
 
     let Opera = (!!navigator.userAgent.match(/Opera|OPR\//));

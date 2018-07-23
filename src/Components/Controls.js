@@ -7,12 +7,14 @@ class Controls extends Component {
             <div className="buttons">
                 <button className="green-btn"
                         onClick={this.props.onStartClick}
-                        disabled={this.props.isStarted}>
+                        disabled={this.props.isStarted}
+                        id="start">
                     Start
                 </button>
                 <button className="red-btn"
                         disabled={!this.props.isStarted}
-                        onClick={this.props.onStopClick}>
+                        onClick={this.props.onStopClick}
+                        id="stop">
                     Pause
                 </button>
                 <button className="seagreen-btn"

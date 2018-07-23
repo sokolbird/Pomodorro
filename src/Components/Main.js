@@ -24,14 +24,19 @@ class Main extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            initialTime: nextProps.workTime,
-            workTime: nextProps.workTime,
-            smallBreak: nextProps.smallBreak,
-            bigBreak: nextProps.bigBreak,
-            remainingTimeSec: nextProps.workTime
-        })
+        document.getElementById("stop").click();
+        this.setState((state, props) => {
+            return {
+                initialTime: nextProps.workTime,
+                workTime: nextProps.workTime,
+                smallBreak: nextProps.smallBreak,
+                bigBreak: nextProps.bigBreak,
+                remainingTimeSec: nextProps.workTime
+            }
+        });
+        this.setNextTimer();
     }
+
 
     render() {
         return (
@@ -61,6 +66,7 @@ class Main extends Component {
             if (this.state.remainingTimeSec <= 0) {
                 this.endCurrentTimer();
                 this.setNextTimer();
+                if (this.props.autostart) this.startNextTimer();
             }
         }, 1000);
     };
@@ -86,27 +92,37 @@ class Main extends Component {
 
     setNextTimer = () => {
         if (!this.state.isBreak) {
-            this.setState({
-                remainingTimeSec : this.state.workTime,
-                initialTime: this.state.workTime
+            this.setState((state, props) => {
+                return {
+                    remainingTimeSec : state.workTime,
+                    initialTime: state.workTime
+                }
             });
             return;
         }
 
         if (this.props.timerCount % 8 === 0 && this.props.bigBreakEnabled) {
-            this.setState({
-                remainingTimeSec : this.state.bigBreak,
-                initialTime: this.state.bigBreak
+            this.setState((state, props) => {
+                return {
+                    remainingTimeSec : state.bigBreak,
+                    initialTime: state.bigBreak
+                }
             });
             return;
         }
 
         if (this.props.timerCount % 8 !== 0) {
-            this.setState({
-                remainingTimeSec : this.state.smallBreak,
-                initialTime: this.state.smallBreak
+            this.setState((state, props) => {
+                return {
+                    remainingTimeSec : state.smallBreak,
+                    initialTime: state.smallBreak
+                }
             });
         }
+    };
+
+    startNextTimer = () => {
+      document.getElementById("start").click();
     };
 
     handleReset = () => {

@@ -14,6 +14,7 @@ class App extends Component {
         pomodoroList: [1],
         isSettingsOpen: false,
         bigBreakEnabled: true,
+        autostart: false,
         workTime: 25,
         smallBreak: 5,
         bigBreak: 15
@@ -37,7 +38,8 @@ class App extends Component {
                           workTime={this.state.workTime * 60}
                           smallBreak={this.state.smallBreak * 60}
                           bigBreak={this.state.bigBreak * 60}
-                          bigBreakEnabled={this.state.bigBreakEnabled}/>
+                          bigBreakEnabled={this.state.bigBreakEnabled}
+                          autostart={this.state.autostart} />
                     <PomodorosLeft pomodoroList={this.state.pomodoroList}/>
                     <Notes/>
                 </div>
@@ -48,7 +50,8 @@ class App extends Component {
                                                          workTime={this.state.workTime}
                                                          smallBreak={this.state.smallBreak}
                                                          bigBreak={this.state.bigBreak}
-                                                         bigBreakEnabled={this.state.bigBreakEnabled}/>}
+                                                         bigBreakEnabled={this.state.bigBreakEnabled}
+                                                         autostart={this.state.autostart}/>}
                 </div>
             </main>
         );
@@ -80,6 +83,7 @@ class App extends Component {
 
     applySettings = (newTimers) => {
         this.setState({
+            autostart: newTimers.autostart,
             bigBreakEnabled: newTimers.bigBreakEnabled,
             workTime: newTimers.workTime,
             smallBreak: newTimers.smallBreak,

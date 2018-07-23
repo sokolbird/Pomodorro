@@ -10,6 +10,7 @@ class Modal extends Component {
         super(props);
 
         this.state = {
+            autostart: this.props.autostart,
             bigBreakEnabled: this.props.bigBreakEnabled,
             workTime: this.props.workTime,
             smallBreak: this.props.smallBreak,
@@ -33,10 +34,17 @@ class Modal extends Component {
                     <h5 className="settings-header">Settings</h5>
                     <div className="settings-body">
                         <div className="setting">
+                            <span>Timer auto start</span>
+                            <ToggleSwitch className="setting-input"
+                                          checked={this.state.autostart}
+                                          handleChange={this.handleAutostartChange.bind(this)}
+                            />
+                        </div>
+                        <div className="setting">
                             <span>Big break after every 4th pomodoro</span>
                             <ToggleSwitch className="setting-input"
                                           checked={this.state.bigBreakEnabled}
-                                          handleChange={this.handleSwitchChange.bind(this)}/>
+                                          handleChange={this.handleBreakSwitchChange.bind(this)}/>
                         </div>
                         <div className="setting">
                             <span>Time for work in minutes</span>
@@ -89,9 +97,15 @@ class Modal extends Component {
         )
     }
 
-    handleSwitchChange = () => {
+    handleBreakSwitchChange = () => {
         this.setState({
             bigBreakEnabled: !this.state.bigBreakEnabled
+        });
+    };
+
+    handleAutostartChange = () => {
+        this.setState({
+            autostart: !this.state.autostart
         });
     };
 
@@ -133,6 +147,7 @@ class Modal extends Component {
 
     handleApply = () => {
         let newTimers = {
+            autostart: this.state.autostart,
             bigBreakEnabled: this.state.bigBreakEnabled,
             workTime: this.state.workTime,
             smallBreak: this.state.smallBreak,
