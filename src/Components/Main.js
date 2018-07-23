@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Task from './Task.js'
 import Controls from './Controls.js'
 import Timer from './Timer.js'
-import sound from '../Media/sound.wav'
 import {sendNotification} from "../utils";
+import sound from '../Media/sound.wav'
 
 class Main extends Component {
     constructor(props) {
@@ -45,13 +45,12 @@ class Main extends Component {
                 <Timer isStarted        = {this.state.isStarted}
                        tomatoClasses    = {this.state.tomatoClasses}
                        remainingTimeSec = {this.state.remainingTimeSec}/>
-                <audio id="sound" src={sound} preload="auto"/>
+                <audio src={sound} preload="auto" id="sound"/>
             </div>
         )
     }
 
     handleStart = () => {
-        sendNotification();
         this.setState({
             isStarted: true,
             tomatoClasses: 'tomato tomato-spin'
@@ -74,17 +73,15 @@ class Main extends Component {
     };
 
     endCurrentTimer = () => {
+        sendNotification(this.state.isBreak);
         clearInterval(this.timer);
         this.props.incrementTimerCount();
-        document.getElementById("sound").play();
 
         this.setState({
             isStarted: false,
             tomatoClasses: 'tomato',
             isBreak: !this.state.isBreak,
         });
-
-
     };
 
     setNextTimer = () => {
