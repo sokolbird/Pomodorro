@@ -17,7 +17,7 @@ class Menu extends Component {
                         <img src={settings} alt="settings" className="nav-icon"/>
                     </li>
                     <li className="nav-item">
-                        <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">
+                        <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" tabIndex="-1">
                             What is pomodoro?
                             <img src={help} alt="what is pomodoro" className="nav-icon"/>
                         </a>
@@ -27,13 +27,13 @@ class Menu extends Component {
                 <div className="nav-footer">
                     <div className="nav-footer-header">Contacts</div>
                     <div className="contacts-wrapper">
-                        <a href="https://github.com/sokolbird">
+                        <a href="https://github.com/sokolbird" tabIndex="-1">
                             <img src={github} alt="github" className="nav-icon"/>
                         </a>
-                        <a href="https://www.instagram.com/sokol.bird">
+                        <a href="https://www.instagram.com/sokol.bird" tabIndex="-1">
                             <img src={inst} alt="instagram" className="nav-icon"/>
                         </a>
-                        <a href="https://t.me/SokolBird">
+                        <a href="https://t.me/SokolBird" tabIndex="-1">
                             <img src={telegram} alt="telegram" className="nav-icon"/>
                         </a>
                     </div>

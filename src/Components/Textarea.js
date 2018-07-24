@@ -10,7 +10,9 @@ class Textarea extends Component {
                           placeholder="Write here a note"
                           onChange={this.onNoteChange}
                           value={this.props.value}/>
-                <button className="save" onClick={this.props.onSave}>
+                <button className="save"
+                        onClick={this.props.onSave}
+                        id="save">
                     Save &nbsp;
                     <img src={save} alt="icon"/>
                 </button>
@@ -24,7 +26,7 @@ class Textarea extends Component {
 
     onNoteChange = (e) => {
         this.props.onChange(e.target.value);
-    }
+    };
 }
 
 export default Textarea;

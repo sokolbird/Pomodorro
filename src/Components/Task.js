@@ -7,7 +7,10 @@ class Task extends Component {
         return (
             <div className="task">
                 <label htmlFor="task-name">Click on task to type or edit</label>
-                <span ref={(span) => { this.taskName = span; }} tabIndex="1" onFocus={this.handleFocus}>
+                <span ref={(span) => { this.taskName = span; }}
+                      tabIndex="0"
+                      onFocus={this.handleFocus}
+                      id="taskName">
                     {this.state.task ? this.state.task : 'Enter your task'}
                 </span>
                 <input ref={(input) => { this.taskInput = input; }} type="text"

@@ -66,7 +66,7 @@ class Main extends Component {
             if (this.state.remainingTimeSec <= 0) {
                 this.endCurrentTimer();
                 this.setNextTimer();
-                if (this.props.autostart) this.startNextTimer();
+                if (this.props.autostart) setTimeout(() => this.startNextTimer(), 1000);
             }
         }, 1000);
     };
@@ -137,7 +137,8 @@ class Main extends Component {
     handleStop = () => {
         clearInterval(this.timer);
         this.setState({
-            isStarted: false
+            isStarted: false,
+            tomatoClasses: 'tomato'
         })
     }
 }

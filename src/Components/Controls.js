@@ -18,7 +18,8 @@ class Controls extends Component {
                     Pause
                 </button>
                 <button className="seagreen-btn"
-                        onClick={this.props.onReset}>
+                        onClick={this.props.onReset}
+                        id="reset">
                     Reset
                 </button>
             </div>

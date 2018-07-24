@@ -83,11 +83,13 @@ class Modal extends Component {
                     </div>
                     <div className="settings-footer">
                         <button className="red-btn"
-                                onClick={this.props.closeSettings}>
+                                onClick={this.props.closeSettings}
+                                id="cancel">
                             Cancel
                         </button>
                         <button className="green-btn"
-                                onClick={this.handleApply}>
+                                onClick={this.handleApply}
+                                id="apply">
                             Apply
                         </button>
                     </div>

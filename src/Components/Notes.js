@@ -20,7 +20,8 @@ class Notes extends Component {
             <div className="thoughts">
                 <h5 className="card-header">Notes</h5>
                 <div className={this.state.onEditing ? "adding-note adding-disabled" : "adding-note"}
-                     onClick={this.handleAdding}>
+                     onClick={this.handleAdding}
+                     id="addNote">
 
                     {this.state.onAdding ? 'Cancel' : 'Add a note...'}
 
