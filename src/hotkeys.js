@@ -31,10 +31,6 @@ export function initHotkeys() {
         if (e.keyCode === 27 && document.getElementById("cancel"))
             document.getElementById("cancel").click();
 
-        // enter on modal
-        if (e.keyCode === 13 && document.getElementById("apply"))
-            document.getElementById("apply").click();
-
         // ctrl + s for saving note
         if (e.keyCode === 83 && e.ctrlKey && document.getElementById("save")) {
             document.getElementById("save").click();

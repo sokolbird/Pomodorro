@@ -29,8 +29,8 @@ class Modal extends Component {
 
     render() {
         return ReactDOM.createPortal(
-            <div className="modal" id="modal">
-                <div className="settings-block">
+            <div className="modal" id="modal" onClick={this.props.closeSettings}>
+                <div className="settings-block" onClick={(e) => e.stopPropagation()}>
                     <h5 className="settings-header">Settings</h5>
                     <div className="settings-body">
                         <div className="setting">
@@ -42,15 +42,13 @@ class Modal extends Component {
                         </div>
                         <div className="setting">
                             <span>Big break after every 4th pomodoro</span>
-                            <ToggleSwitch className="setting-input"
-                                          checked={this.state.bigBreakEnabled}
+                            <ToggleSwitch checked={this.state.bigBreakEnabled}
                                           handleChange={this.handleBreakSwitchChange.bind(this)}/>
                         </div>
                         <div className="setting">
                             <span>Time for work in minutes</span>
                             <InputMinutes name={'workTime'}
                                           currentTime={this.state.workTime}
-                                          className="setting-input"
                                           onChange={this.inputChange.bind(this)}
                                           increment={this.increment.bind(this, 'workTime')}
                                           decrement={this.decrement.bind(this, 'workTime')}
@@ -60,25 +58,22 @@ class Modal extends Component {
                             <span>Time for small break in minutes</span>
                             <InputMinutes name={'smallBreak'}
                                           currentTime={this.state.smallBreak}
-                                          className="setting-input"
                                           onChange={this.inputChange.bind(this)}
                                           increment={this.increment.bind(this, 'smallBreak')}
                                           decrement={this.decrement.bind(this, 'smallBreak')}
                                           handleBlur={this.handleInputBlur.bind(this, 'smallBreak')}/>
                         </div>
 
-                        {this.state.bigBreakEnabled ?
-                            <div className="setting">
-                                <span>Time for big break in minutes</span>
-                                <InputMinutes name={'bigBreak'}
-                                              currentTime={this.state.bigBreak}
-                                              className="setting-input"
-                                              onChange={this.inputChange.bind(this)}
-                                              increment={this.increment.bind(this, 'bigBreak')}
-                                              decrement={this.decrement.bind(this, 'bigBreak')}
-                                              handleBlur={this.handleInputBlur.bind(this, 'bigBreak')}/>
-                            </div>
-                        : ""}
+                        <div className={this.state.bigBreakEnabled ?  "setting" : "setting setting-disabled"}>
+                            <span>Time for big break in minutes</span>
+                            <InputMinutes name={'bigBreak'}
+                                          currentTime={this.state.bigBreak}
+                                          onChange={this.inputChange.bind(this)}
+                                          increment={this.increment.bind(this, 'bigBreak')}
+                                          decrement={this.decrement.bind(this, 'bigBreak')}
+                                          handleBlur={this.handleInputBlur.bind(this, 'bigBreak')}
+                                          disabled={!this.state.bigBreakEnabled}/>
+                        </div>
 
                     </div>
                     <div className="settings-footer">
@@ -157,6 +152,9 @@ class Modal extends Component {
         };
 
         this.props.applySettings(newTimers);
+
+        let timersForStorage = JSON.stringify(newTimers);
+        localStorage.setItem("settings", timersForStorage);
     }
 }
 

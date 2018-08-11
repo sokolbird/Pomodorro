@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Task from './Task.js'
 import Controls from './Controls.js'
 import Timer from './Timer.js'
-import {sendNotification} from "../utils";
 import sound from '../Media/sound.wav'
 
 class Main extends Component {
@@ -45,7 +44,8 @@ class Main extends Component {
                 <Controls onStartClick = {this.handleStart.bind(this)}
                           isStarted    = {this.state.isStarted}
                           onReset      = {this.handleReset.bind(this)}
-                          onStopClick  = {this.handleStop.bind(this)}/>
+                          onStopClick  = {this.handleStop.bind(this)}
+                          canReset     = {this.state.remainingTimeSec < this.state.initialTime}/>
 
                 <Timer isStarted        = {this.state.isStarted}
                        tomatoClasses    = {this.state.tomatoClasses}
@@ -63,7 +63,7 @@ class Main extends Component {
 
         this.timer = setInterval(() => {
             this.tick();
-            if (this.state.remainingTimeSec <= 0) {
+            if (this.state.remainingTimeSec < 1) {
                 this.endCurrentTimer();
                 this.setNextTimer();
                 if (this.props.autostart) setTimeout(() => this.startNextTimer(), 1000);
@@ -72,14 +72,16 @@ class Main extends Component {
     };
 
     tick = () => {
-        let remainingTimeSec = this.state.remainingTimeSec - 1;
-        this.setState({
-            remainingTimeSec: remainingTimeSec
-        });
+        if(this.state.remainingTimeSec > 0) {
+            let remainingTimeSec = this.state.remainingTimeSec - 1;
+            this.setState({
+                remainingTimeSec: remainingTimeSec
+            });
+        }
     };
 
     endCurrentTimer = () => {
-        sendNotification(this.state.isBreak);
+        document.getElementById("sound").play();
         clearInterval(this.timer);
         this.props.incrementTimerCount();
 

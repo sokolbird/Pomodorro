@@ -75,3 +75,13 @@
     border: 1px solid #083527;
     cursor: pointer;
 }
+
+.seagreen-btn:disabled {
+    opacity: 0.7;
+    cursor: auto;
+}
+
+.seagreen-btn:disabled:hover {
+    background: #20c997;
+    border: 1px solid #147d5d;
+}

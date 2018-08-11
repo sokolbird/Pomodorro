@@ -19,6 +19,7 @@ class Controls extends Component {
                 </button>
                 <button className="seagreen-btn"
                         onClick={this.props.onReset}
+                        disabled={!this.props.canReset}
                         id="reset">
                     Reset
                 </button>

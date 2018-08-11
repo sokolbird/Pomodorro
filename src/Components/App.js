@@ -9,16 +9,37 @@ import Modal from './Modal.js'
 import { getPomodoro } from "../utils.js";
 
 class App extends Component {
-    state = {
-        timerCount: 1,
-        pomodoroList: [1],
-        isSettingsOpen: false,
-        bigBreakEnabled: true,
-        autostart: false,
-        workTime: 25,
-        smallBreak: 5,
-        bigBreak: 15
-    };
+    constructor() {
+        super();
+
+        let settings = JSON.parse(localStorage.getItem("settings"));
+        console.log(settings);
+        if(settings) {
+            this.state = {
+                timerCount: 1,
+                pomodoroList: [1],
+                isSettingsOpen: false,
+                bigBreakEnabled: settings.bigBreakEnabled,
+                autostart: settings.autostart,
+                workTime: settings.workTime,
+                smallBreak: settings.smallBreak,
+                bigBreak: settings.bigBreak
+            }
+        }
+        else {
+            this.state = {
+                timerCount: 1,
+                pomodoroList: [1],
+                isSettingsOpen: false,
+                bigBreakEnabled: true,
+                autostart: false,
+                workTime: 25,
+                smallBreak: 5,
+                bigBreak: 15
+            };
+        }
+    }
+
 
     render() {
         return (
@@ -31,7 +52,7 @@ class App extends Component {
 
                 <Menu openSettings={this.toggleSettings.bind(this)}/>
 
-                <div className="wrap" onClick={this.handleMenuBlur}>
+                <div className="wrap" onClick={() => this.check.checked = false}>
                     <Logo/>
                     <Main timerCount={this.state.timerCount}
                           incrementTimerCount={this.incrementTimerCount.bind(this)}
@@ -68,10 +89,6 @@ class App extends Component {
                 pomodoroList: [...prevState.pomodoroList, pomodoroNumber]
             }))
         }
-    };
-
-    handleMenuBlur = () => {
-        this.check.checked = false;
     };
 
     toggleSettings = () => {
